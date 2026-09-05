@@ -1,25 +1,30 @@
+```json
 {
   "name": "abhinav-padige-portfolio",
-  "version": "1.0.0",
-  "description": "Personal portfolio website for Abhinav Padige - AI Engineer with expertise in Python, ML, DL, FastAPI, Docker, AWS, Azure",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "react-type-animation": "^3.2.0",
+    "framer-motion": "^10.18.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.24",
-    "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.0"
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3",
+    "vite": "^4.5.2"
   }
 }

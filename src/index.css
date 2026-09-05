@@ -1,671 +1,186 @@
-```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
-   BASE STYLES
-   ============================================ */
-
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #a855f7 #0f172a;
-}
-
-html::-webkit-scrollbar {
-  width: 8px;
-}
-
-html::-webkit-scrollbar-track {
-  background: #0f172a;
-}
-
-html::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #a855f7, #ec4899);
-  border-radius: 4px;
-}
-
-html::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #9333ea, #db2777);
+/* Base styles */
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --card-border: rgba(147, 51, 234, 0.3);
+  --glass-bg: rgba(30, 41, 59, 0.4);
+  --glass-border: rgba(147, 51, 234, 0.2);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #020617;
-  color: #f8fafc;
-  overflow-x: hidden;
+  @apply bg-gray-900 text-gray-100;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
-::selection {
-  background-color: rgba(168, 85, 247, 0.4);
-  color: #ffffff;
-}
-
-/* ============================================
-   GLASSMORPHISM UTILITIES
-   ============================================ */
-
+/* Glassmorphism */
 .glass {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  @apply bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl shadow-glass;
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
 }
 
-.glass-sm {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.25);
+.glass:hover {
+  @apply shadow-glass-hover transform -translate-y-1;
+  box-shadow: var(--glass-hover);
 }
 
-.glass-strong {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* Gradient text */
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500;
 }
 
-/* ============================================
-   GRADIENT BORDER CARDS
-   ============================================ */
-
+/* Gradient border */
 .gradient-border {
-  position: relative;
-  background: rgba(15, 23, 42, 0.8);
-  border-radius: 1rem;
-  overflow: hidden;
+  @apply relative;
 }
 
 .gradient-border::before {
   content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 1rem;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.gradient-border-hover:hover::before {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.8), rgba(236, 72, 153, 0.8));
-}
-
-/* ============================================
-   ANIMATED BACKGROUND
-   ============================================ */
-
-.animated-bg {
-  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0f172a, #1a0a2e, #0f172a);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ============================================
-   FLOATING ORBS (HERO BACKGROUND)
-   ============================================ */
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.orb-1 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #a855f7, transparent);
-  top: 10%;
-  left: 10%;
-  animation: float 8s ease-in-out infinite;
-}
-
-.orb-2 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, #ec4899, transparent);
-  top: 50%;
-  right: 10%;
-  animation: float 10s ease-in-out infinite reverse;
-}
-
-.orb-3 {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, #06b6d4, transparent);
-  bottom: 10%;
-  left: 30%;
-  animation: float 12s ease-in-out infinite;
-}
-
-/* ============================================
-   TEXT GRADIENTS
-   ============================================ */
-
-.text-gradient {
-  background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-alt {
+  @apply absolute inset-0 rounded-xl -z-0;
   background: linear-gradient(135deg, #a855f7, #ec4899);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  @apply -translate-x-0.5 -translate-y-0.5;
+  width: calc(100% + 1px);
+  height: calc(100% + 1px);
 }
 
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #06b6d4, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ============================================
-   BUTTON STYLES
-   ============================================ */
-
-.btn-primary {
-  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f43f5e 100%);
-  background-size: 200% 200%;
-  color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+/* Animated gradient background */
+.animated-gradient {
   position: relative;
   overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
 }
 
-.btn-primary::before {
+.animated-gradient::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #9333ea 0%, #db2777 50%, #e11d48 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: inherit;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    #a855f7 0%,
+    #ec4899 25%,
+    #3b82f6 50%,
+    #a855f7 75%,
+    #ec4899 100%
+  );
+  animation: gradientShift 15s ease infinite;
+  z-index: -2;
 }
 
-.btn-primary:hover::before {
-  opacity: 1;
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-.btn-primary span {
-  position: relative;
-  z-index: 1;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skill badge */
+.skill-badge {
+  @apply glass px-4 py-2 text-sm font-medium transition-all hover:scale-105;
+  border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+/* Input styles */
+.input-glass {
+  @apply w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg 
+         text-white placeholder-gray-400 focus:outline-none focus:ring-2 
+         focus:ring-purple-500 focus:border-purple-500 transition-all;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 
+         text-white font-medium rounded-lg hover:scale-105 
+         shadow-glass transition-all disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #a855f7;
-  padding: 0.75rem 2rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  font-size: 1rem;
-  border: 2px solid rgba(168, 85, 247, 0.5);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
+  @apply px-6 py-3 bg-gray-800/50 border border-gray-700 text-white 
+         font-medium rounded-lg hover:bg-gray-700/70 hover:border-gray-600 
+         transition-all;
 }
 
-.btn-secondary:hover {
-  background: rgba(168, 85, 247, 0.1);
-  border-color: #a855f7;
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* ============================================
-   SKILL BADGE
-   ============================================ */
-
-.skill-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.5rem 1rem;
-  border-radius: 1rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: default;
-  position: relative;
-  overflow: hidden;
+::-webkit-scrollbar-track {
+  @apply bg-gray-800/50;
 }
 
-.skill-badge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 1rem;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-r from-purple-500 to-pink-500 rounded-full;
 }
 
-.skill-badge:hover::before {
-  opacity: 1;
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gradient-to-b from-purple-600 to-pink-600;
 }
 
-.skill-badge:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15), 0 0 20px rgba(168, 85, 247, 0.1);
-  border-color: rgba(168, 85, 247, 0.3);
+/* Dark mode support */
+.dark {
+  @apply bg-gray-900 text-gray-100;
 }
 
-.skill-badge .icon-wrapper {
-  width: 56px;
-  height: 56px;
-  border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  position: relative;
-  z-index: 1;
+.dark .glass {
+  @apply bg-gray-800/50 border-gray-700/50;
 }
 
-.skill-badge .skill-name {
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #e2e8f0;
-  position: relative;
-  z-index: 1;
+.dark .glass:hover {
+  @apply bg-gray-700/60;
 }
 
-/* ============================================
-   PROJECT CARD
-   ============================================ */
-
-.project-card {
-  min-width: 340px;
-  max-width: 340px;
-  border-radius: 1rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  position: relative;
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 1rem;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(168, 85, 247, 0.1);
-}
-
-/* ============================================
-   FORM INPUTS
-   ============================================ */
-
-.input-glass {
-  width: 100%;
-  padding: 0.875rem 1.25rem;
-  border-radius: 0.75rem;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(168, 85, 247, 0.2);
-  color: #f8fafc;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.input-glass::placeholder {
-  color: #64748b;
-}
-
-.input-glass:focus {
-  border-color: #a855f7;
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15), 0 0 15px rgba(168, 85, 247, 0.1);
-  background: rgba(15, 23, 42, 0.8);
-}
-
-/* ============================================
-   SECTION STYLES
-   ============================================ */
-
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  position: relative;
-  display: inline-block;
-}
-
-.section-subtitle {
-  color: #94a3b8;
-  font-size: 1.1rem;
-  margin-bottom: 3rem;
-}
-
-.section-divider {
-  width: 60px;
-  height: 4px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #a855f7, #ec4899);
-  margin-bottom: 1rem;
-}
-
-/* ============================================
-   NAVBAR
-   ============================================ */
-
-.nav-link {
-  color: #94a3b8;
-  font-weight: 500;
-  font-size: 0.95rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  position: relative;
-  text-decoration: none;
-}
-
-.nav-link:hover {
-  color: #a855f7;
-  background: rgba(168, 85, 247, 0.1);
-}
-
-.nav-link.active {
-  color: #a855f7;
-  background: rgba(168, 85, 247, 0.15);
-}
-
-/* ============================================
-   PARTICLE DOTS
-   ============================================ */
-
-.particles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: rgba(168, 85, 247, 0.4);
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
-}
-
-/* ============================================
-   TECH STACK BADGE
-   ============================================ */
-
-.tech-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  background: rgba(168, 85, 247, 0.15);
-  color: #c084fc;
-  border: 1px solid rgba(168, 85, 247, 0.2);
-  white-space: nowrap;
-}
-
-/* ============================================
-   EDUCATION CARD
-   ============================================ */
-
-.edu-card {
-  border-radius: 1rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-.edu-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  border-color: rgba(168, 85, 247, 0.3);
-}
-
-.edu-card-header {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* ============================================
-   SOCIAL ICON
-   ============================================ */
-
-.social-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #94a3b8;
-  font-size: 1.25rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.social-icon:hover {
-  background: rgba(168, 85, 247, 0.2);
-  border-color: rgba(168, 85, 247, 0.4);
-  color: #a855f7;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.2);
-}
-
-/* ============================================
-   CURSOR GLOW EFFECT
-   ============================================ */
-
-.cursor-glow {
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease;
-}
-
-/* ============================================
-   RESPONSIVE UTILITIES
-   ============================================ */
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 2rem;
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .glass {
+    @apply rounded-lg;
   }
-
-  .project-card {
-    min-width: 280px;
-    max-width: 280px;
+  
+  .skill-badge {
+    @apply px-3 py-1.5 text-xs;
   }
 }
 
-@media (max-width: 480px) {
-  .section-title {
-    font-size: 1.75rem;
+/* Print styles */
+@media print {
+  body {
+    @apply bg-white text-black;
   }
-
-  .project-card {
-    min-width: 260px;
-    max-width: 260px;
+  
+  .glass {
+    @apply bg-white border-gray-300 shadow-none;
   }
-}
-
-/* ============================================
-   SCROLL ANIMATIONS
-   ============================================ */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.reveal-left.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-right {
-  opacity: 0;
-  transform: translateX(50px);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.reveal-right.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.reveal-scale.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* ============================================
-   TYPING CURSOR
-   ============================================ */
-
-.typing-cursor::after {
-  content: '|';
-  animation: blink 1s step-end infinite;
-  color: #a855f7;
-  font-weight: 300;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* ============================================
-   GRID PATTERN OVERLAY
-   ============================================ */
-
-.grid-pattern {
-  background-image:
-    linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* ============================================
-   LOADING SKELETON
-   ============================================ */
-
-.skeleton {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 0.5rem;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  
+  .gradient-text {
+    @apply text-black bg-none;
+  }
 }

@@ -8,7 +8,7 @@ const SkillsSection: React.FC = () => {
     { name: 'FastAPI', icon: '⚡' },
     { name: 'Docker', icon: '🐳' },
     { name: 'AWS', icon: '☁️' },
-    { name: 'Azure', icon: '☁️' },
+    { name: 'Azure', icon: '💙' },
     { name: 'React', icon: '⚛️' },
     { name: 'TypeScript', icon: '📘' },
     { name: 'Tailwind CSS', icon: '🎨' },
@@ -26,10 +26,12 @@ const SkillsSection: React.FC = () => {
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="relative flex items-center justify-center p-4 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-500/50"
+              className="relative flex items-center justify-center p-6 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl hover:-translate-y-1 transition-all duration-300 ease-out hover:shadow-lg hover:border-purple-500/50"
             >
               <span className="text-2xl">{skill.icon}</span>
-              <span className="ml-3 text-sm font-medium text-gray-100">{skill.name}</span>
+              <span className="ml-3 text-lg font-medium text-white">
+                {skill.name}
+              </span>
             </div>
           ))}
         </div>

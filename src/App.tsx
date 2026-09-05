@@ -12,7 +12,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 to-gray-900 text-white font-sans antialiased">
       <Navbar />
-      <main className="py-16">
+      <main className="relative z-10">
         <Hero />
         <AboutMe />
         <Skills />

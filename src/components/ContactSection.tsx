@@ -4,7 +4,7 @@ const ContactSection: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
@@ -22,7 +22,8 @@ const ContactSection: React.FC = () => {
     // Simulate API call
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
-      // In real app, replace with actual fetch to backend
+      // In real app, replace with actual API call
+      // const response = await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formState) });
       setSubmitStatus({ type: 'success', message: 'Message sent successfully!' });
       setFormState({ name: '', email: '', message: '' });
     } catch (error) {
@@ -33,16 +34,16 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-gray-900/50 backdrop-blur-sm">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
           Contact Me
         </h2>
         {submitStatus && (
-          <div className={`mb-6 p-4 rounded-lg text-center font-medium ${
+          <div className={`mb-8 p-4 rounded-lg text-center font-medium ${
             submitStatus.type === 'success'
-              ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-              : 'bg-red-500/20 text-red-400 border border-red-500/30'
+              ? 'bg-green-600/20 text-green-400 border border-green-500/30'
+              : 'bg-red-600/20 text-red-400 border border-red-500/30'
           }`}>
             {submitStatus.message}
           </div>
@@ -74,7 +75,7 @@ const ContactSection: React.FC = () => {
               value={formState.email}
               onChange={handleChange}
               className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white placeholder-gray-400"
-              placeholder="your@email.com"
+              placeholder="your.email@example.com"
               required
             />
           </div>
@@ -96,7 +97,7 @@ const ContactSection: React.FC = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full flex justify-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex justify-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium rounded-lg text-sm hover:opacity-90 hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>

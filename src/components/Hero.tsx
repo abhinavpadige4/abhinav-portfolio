@@ -1,39 +1,111 @@
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#111827]">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-blue-900/20 pointer-events-none" />
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-extrabold text-white mb-6"
-        >
-          Hi, I'm <span className="gradient-text">Abhinav</span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl text-gray-300 mb-8"
-        >
-          AI Engineer & Full Stack Developer
-        </motion.p>
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#a855f7]/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+
+      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.8 }}
         >
-          <a
-            href="#contact"
-            className="inline-flex items-center px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 shadow-lg shadow-purple-500/30"
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
           >
-            Get In Touch
-            <ArrowDown className="ml-2 w-5 h-5" />
-          </a>
+            <span className="gradient-text">AI Engineer</span>
+            <br />
+            <span className="text-white">& Full Stack Developer</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl sm:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto"
+          >
+            Building intelligent solutions and scalable web applications with modern technologies
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary"
+            >
+              Get In Touch
+            </motion.a>
+            <motion.a
+              href="#projects"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 border border-[#a855f7] text-[#a855f7] rounded-lg hover:bg-[#a855f7]/10 transition-all duration-300"
+            >
+              View Projects
+            </motion.a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex items-center justify-center gap-6 mt-12"
+          >
+            <motion.a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -3, color: '#a855f7' }}
+              className="text-gray-400 hover:text-[#a855f7] transition-colors"
+            >
+              <Github size={24} />
+            </motion.a>
+            <motion.a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ y: -3, color: '#a855f7' }}
+              className="text-gray-400 hover:text-[#a855f7] transition-colors"
+            >
+              <Linkedin size={24} />
+            </motion.a>
+            <motion.a
+              href="mailto:abhinav@example.com"
+              whileHover={{ y: -3, color: '#a855f7' }}
+              className="text-gray-400 hover:text-[#a855f7] transition-colors"
+            >
+              <Mail size={24} />
+            </motion.a>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            <ArrowDown className="text-gray-400" size={24} />
+          </motion.div>
         </motion.div>
       </div>
     </section>

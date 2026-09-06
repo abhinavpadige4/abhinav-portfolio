@@ -1,39 +1,38 @@
 import React from 'react';
+import { Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-gradient-to-b from-gray-900/80 via-gray-950/90 to-gray-900/80 backdrop-blur-sm border-t border-gray-800/50 py-12 mt-20">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="text-center">
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Abhinav Padige. All rights reserved.
-          </p>
-          <div className="flex justify-center space-x-6 mt-6">
-            <a 
-              href="https://linkedin.com/in/abhinav-padige" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-a855f7 transition-colors duration-300 text-gray-300"
-            >
-              LinkedIn
-            </a>
-            <a 
-              href="https://github.com/abhinavpadige" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-a855f7 transition-colors duration-300 text-gray-300"
-            >
-              GitHub
-            </a>
-            <a 
-              href="https://twitter.com/abhinavpadige" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-a855f7 transition-colors duration-300 text-gray-300"
-            >
-              Twitter
-            </a>
-          </div>
+    <footer className="bg-gray-900 py-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+        <p className="text-sm text-gray-400">
+          © 2026 Abhinav. All rights reserved.
+        </p>
+        <div className="mt-4 flex gap-6">
+          <a
+            href="https://github.com/abhinav"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-primary transition-colors duration-200"
+          >
+            <Github className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/in/abhinav"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-primary transition-colors duration-200"
+          >
+            <Linkedin className="h-5 w-5" />
+          </a>
+          <a
+            href="https://twitter.com/abhinav"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-primary transition-colors duration-200"
+          >
+            <Twitter className="h-5 w-5" />
+          </a>
         </div>
       </div>
     </footer>

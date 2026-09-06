@@ -1,39 +1,71 @@
 import React from 'react';
+import {
+  React as ReactIcon,
+  TailwindCss,
+  Typescript,
+  NodeJs,
+  Express,
+  Python,
+  Git,
+  Docker,
+  Aws,
+} from 'lucide-react';
 
 const SkillsSection: React.FC = () => {
-  const skills = [
-    { name: 'Python', icon: '🐍' },
-    { name: 'Machine Learning', icon: '🧠' },
-    { name: 'Deep Learning', icon: '🔬' },
-    { name: 'FastAPI', icon: '⚡' },
-    { name: 'Docker', icon: '🐳' },
-    { name: 'AWS', icon: '☁️' },
-    { name: 'Azure', icon: '💙' },
-    { name: 'React', icon: '⚛️' },
-    { name: 'TypeScript', icon: '📘' },
-    { name: 'Tailwind CSS', icon: '🎨' },
-    { name: 'Vite', icon: '⚡' },
-    { name: 'Git', icon: '🌐' }
+  const frontend = [
+    { name: 'React', Icon: ReactIcon },
+    { name: 'Tailwind', Icon: TailwindCss },
+    { name: 'TypeScript', Icon: Typescript },
+  ];
+  const backend = [
+    { name: 'Node.js', Icon: NodeJs },
+    { name: 'Express', Icon: Express },
+    { name: 'Python', Icon: Python },
+  ];
+  const tools = [
+    { name: 'Git', Icon: Git },
+    { name: 'Docker', Icon: Docker },
+    { name: 'AWS', Icon: Aws },
   ];
 
   return (
-    <section className="py-16">
+    <section className="py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-          Skills
-        </h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {skills.map((skill, index) => (
-            <div
-              key={index}
-              className="relative flex items-center justify-center p-6 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl hover:-translate-y-1 transition-all duration-300 ease-out hover:shadow-lg hover:border-purple-500/50"
-            >
-              <span className="text-2xl">{skill.icon}</span>
-              <span className="ml-3 text-lg font-medium text-white">
-                {skill.name}
-              </span>
+        <h2 className="text-2xl font-bold text-center mb-8">Technical Expertise</h2>
+        <div className="grid grid-cols-1 gap-8 mt-6">
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Frontend</h3>
+            <div className="flex flex-wrap gap-4">
+              {frontend.map(({ name, Icon }) => (
+                <div key={name} className="flex items-center gap-2">
+                  <Icon className="h-5 w-5 text-primary" />
+                  <span className="text-sm">{name}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Backend</h3>
+            <div className="flex flex-wrap gap-4">
+              {backend.map(({ name, Icon }) => (
+                <div key={name} className="flex items-center gap-2">
+                  <Icon className="h-5 w-5 text-primary" />
+                  <span className="text-sm">{name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Tools</h3>
+            <div className="flex flex-wrap gap-4">
+              {tools.map(({ name, Icon }) => (
+                <div key={name} className="flex items-center gap-2">
+                  <Icon className="h-5 w-5 text-primary" />
+                  <span className="text-sm">{name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

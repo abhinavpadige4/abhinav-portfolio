@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { motion } from "framer-motion";
 
 interface ProjectCardProps {
   title: string;
@@ -7,79 +6,75 @@ interface ProjectCardProps {
   techStack: string[];
   imageUrl: string;
   liveUrl: string;
-  githubUrl: string;
-  index: number;
+  demoUrl: string;
 }
 
-export default function ProjectCard({ 
-  title, 
-  description, 
-  techStack, 
-  imageUrl, 
-  liveUrl, 
-  githubUrl,
-  index 
-}: ProjectCardProps) {
+export const ProjectCard = ({ title, description, techStack, imageUrl, liveUrl, demoUrl }: ProjectCardProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
-      className="glass-card overflow-hidden hover-lift gradient-border"
+      whileHover={{ scale: 1.02, y: -4 }}
+      whileTap={{ scale: 0.98, y: 0 }}
+      transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 20 }}
+      className="group bg-[#1f2937]/50 backdrop-blur-sm rounded-2xl border border-[#a855f7]/20 overflow-hidden hover:border-a855f7/50 transition-all duration-500"
     >
-      <div className="relative h-48 bg-gradient-to-br from-[#a855f7]/20 to-purple-500/20">
-        <img 
-          src={imageUrl} 
-          alt={title}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://placehold.co/600x400/111827/a855f7?text=Project+Image';
-          }}
-        />
+      <div className="h-48 bg-gradient-to-r from-a855f7/20 to-9333ea/20">
+        <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
       </div>
-      
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-400 mb-4">{description}</p>
-        
-        <div className="flex flex-wrap gap-2 mb-6">
-          {techStack.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-[#a855f7]/10 text-[#a855f7] text-sm rounded-full"
+        <motion.h3
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="text-xl font-bold text-white mb-3"
+        >
+          {title}
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-gray-300 mb-4 line-clamp-3"
+        >
+          {description}
+        </motion.p>
+        <div className="flex flex-wrap gap-2 mb-5">
+          {techStack.map((tech, index) => (
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
+              className="px-3 py-1 bg-a855f7/20 text-a855f7 text-xs rounded-full"
             >
               {tech}
-            </span>
+            </motion.span>
           ))}
         </div>
-        
-        <div className="flex gap-4">
+        <div className="flex space-x-3">
           <motion.a
             href={liveUrl}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 text-[#a855f7] hover:text-purple-400 transition-colors"
+            transition={{ duration: 0.2 }}
+            className="flex-1 px-4 py-2 bg-a855f7/20 hover:bg-a855f7/30 text-a855f7 font-medium rounded-lg border border-a855f7/50 backdrop-blur-sm transition-all duration-300"
           >
-            <ExternalLink size={18} />
             Live Demo
           </motion.a>
           <motion.a
-            href={githubUrl}
+            href={demoUrl}
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 text-gray-400 hover:text-[#a855f7] transition-colors"
+            transition={{ duration: 0.2 }}
+            className="flex-1 px-4 py-2 bg-transparent hover:bg-a855f7/20 text-a855f7 font-medium rounded-lg border border-a855f7/50 backdrop-blur-sm transition-all duration-300"
           >
-            <Github size={18} />
-            Code
+            Source Code
           </motion.a>
         </div>
       </div>
     </motion.div>
   );
-}
+};

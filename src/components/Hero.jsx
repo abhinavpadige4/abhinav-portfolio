@@ -1,44 +1,57 @@
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
-  const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop')] bg-cover bg-center opacity-20" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#111827]/80 via-[#111827]/90 to-[#111827]" />
-      
-      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold mb-6 gradient-text"
-        >
-          Abhinav
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl text-gray-300 mb-8"
-        >
-          Software Developer & AI Engineer
-        </motion.p>
+    <section className="relative min-h-[100vh] bg-black/50 backdrop-blur-sm">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-black/70"></div>
+      </div>
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-20 pb-24">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="mb-6"
         >
-          <button
-            onClick={scrollToProjects}
-            className="btn-primary flex items-center gap-2 mx-auto"
+          <h1 className="text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+            Abhinav
+          </h1>
+        </motion.div>
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="mb-8"
+        >
+          <p className="text-xl lg:text-2xl text-white/90 max-w-2xl">
+            Software Developer & AI Engineer
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          <motion.a
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95, y: 0 }}
+            href="#projects"
+            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-medium rounded-lg shadow-lg transition-all duration-300 transform hover:shadow-xl"
           >
-            View Projects <ArrowDown size={20} />
-          </button>
+            View Projects
+            <motion.svg
+              className="ml-2 h-4 w-4 transition-transform duration-300"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <motion.path
+                d="M5 12h14M12 5l7 7-7 7"
+                transition={{ delay: 0.3 }}
+              />
+            </motion.svg>
+          </motion.a>
         </motion.div>
       </div>
     </section>

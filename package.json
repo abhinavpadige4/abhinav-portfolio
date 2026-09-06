@@ -1,7 +1,7 @@
 {
   "name": "portfolio-abhinav",
   "version": "1.0.0",
-  "description": "Personal portfolio website for Abhinav - Software Developer & AI Engineer",
+  "description": "Personal portfolio website for Abhinav, a software developer",
   "main": "src/main.jsx",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "framer-motion": "^11.0.8",
-    "lucide-react": "^0.302.0",
+    "lucide-react": "^0.344.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recharts": "^2.8.0"
